@@ -5,13 +5,13 @@
 
     $sql_email = "SELECT * FROM `users` WHERE email = '" . $_POST["email"] . "'";
     $email_error = null;
-    if (!isset($_POST["email"])) $email_error = "empty";
-    else if ($conn->query($sql_email)->num_rows!=0) $email_error = "taken";
+    if (!isset($_POST["email"])) $email_error = "Please input an email.";
+    else if ($conn->query($sql_email)->num_rows!=0) $email_error = "This email is already been taken.";
 
     $sql_user = "SELECT * FROM `users` WHERE username = '" . $_POST["username"] . "'";
     $user_error = null;
-    if (!isset($_POST["username"])) $user_error = "empty";
-    else if ($conn->query($sql_user)->num_rows!=0) $user_error = "taken";
+    if (!isset($_POST["username"])) $user_error = "Please input a username.";
+    else if ($conn->query($sql_user)->num_rows!=0) $user_error = "This username has already been taken.";
 
     if (!isset($email_error) && !isset($user_error)) {
         include("session.php");

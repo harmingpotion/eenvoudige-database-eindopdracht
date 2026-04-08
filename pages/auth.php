@@ -1,6 +1,8 @@
 <?php
     session_start();
-    $conn = new mysqli("localhost", "root", "", "eenvoudige_database");
+    if ((isset($_COOKIE["email"]) || isset($_COOKIE["username"])) && isset($_COOKIE["session_id"])) {
+        header("Location: dashboard.php");
+    }
 
     if (!isset($_GET["type"])) {
         header("Location: auth.php?type=login");
@@ -32,8 +34,12 @@
                 if ($_GET['type']==="login") {
                     echo '<input type="text" required placeholder="Email or username" name="identifier">';
                 } else {
-                    echo '<input type="text" required placeholder="Choose a username..." name="username">';
                     echo '<input type="email" required placeholder="Input an email..." name="email">';
+                    if (isset($_SESSION["email_error"])) echo $_SESSION["email_error"];
+                    if (isset($_SESSION["email_error"])) $_SESSION["email_error"] = '';
+                    echo '<input type="text" required placeholder="Choose a username..." name="username">';
+                    if (isset($_SESSION["user_error"])) echo $_SESSION["user_error"];
+                    if (isset($_SESSION["user_error"])) $_SESSION["user_error"] = '';
                 }
             ?>
             <input type="password" required placeholder="Password" name="password">
