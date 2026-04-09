@@ -7,6 +7,7 @@ if ((!isset($_COOKIE["email"]) && !isset($_COOKIE["username"])) || !isset($_COOK
 }
 
 include("../utils/session.php");
+checkSessionId($_COOKIE["email"], $_COOKIE["session_id"]);
 
 if ($_SERVER['REQUEST_METHOD'] != "POST") die("Invalid action.");
 

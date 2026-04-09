@@ -18,7 +18,8 @@
     </head>
     <body>
         <h1>Account</h1>
-        <a href="./dashboard.php">Return to dashboard</a>
+        <hr>
+        <a href="./dashboard.php" class="return">&lt; Return to dashboard</a>
 
         <form action="../utils/update.php" method="post">
             <input type="hidden" name="value" value="email">

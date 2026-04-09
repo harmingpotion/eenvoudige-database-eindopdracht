@@ -19,10 +19,11 @@
     <body>
         <h1>Dashboard</h1>
         <hr>
+        <a href="../utils/logout.php" class="return">Log out</a>
         
         <section id="pages">
             <a href="./account.php">Account</a>
-            <a href="../utils/logout.php">Log out</a>
+            <a href="./database.php">Database</a>
         </section>
     </body>
 </html>

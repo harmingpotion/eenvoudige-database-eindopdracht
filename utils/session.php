@@ -5,9 +5,9 @@
 
         $new_session_id = hash("sha256", random_bytes(16));
 
-        $stmt = $conn->prepare("UPDATE users SET session_id = ? WHERE email = ?");
-        $stmt->bind_param("ss", $new_session_id, $user_email);
-        $stmt->execute();
+        $upmt = $conn->prepare("UPDATE users SET session_id = ? WHERE email = ?");
+        $upmt->bind_param("ss", $new_session_id, $user_email);
+        $upmt->execute();
         
         setcookie("email", $user_email, time() + (3600 * 24), "/");
         setcookie("session_id", $new_session_id, time() + (3600 * 24), "/");

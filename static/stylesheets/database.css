@@ -1,0 +1,60 @@
+h1 {
+    color: white;
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+}
+
+hr {
+    position: relative;
+    color: white;
+    width: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    border: none;
+    background-color: white;
+    border-radius: min(1vw, 1vh);
+}
+
+table {
+    position: relative;
+    margin: 10px 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    border-collapse: collapse;
+    background: #868686;
+}
+
+th, td {
+    border: 1px solid #3f3f3f;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+#edit_user {
+    position: absolute;
+    width: 40vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 2vw;
+    border-radius: min(2.5vw, 2.5vh);
+}
+
+#edit_user form input, #edit_user form button, #edit_user button {
+    width: 90%;
+    height: 3vw;
+    border: 0;
+    margin: 5px 0;
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
