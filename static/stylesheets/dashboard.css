@@ -1,0 +1,30 @@
+h1 {
+    color: white;
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+}
+
+hr {
+    position: relative;
+    color: white;
+    width: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    border: none;
+    background-color: white;
+    border-radius: min(1vw, 1vh);
+}
+
+#pages {
+    width: 60vw;
+}
+
+#pages a {
+    width: 100%;
+    aspect-ratio: 9/16;
+    background-color: orange;
+    position: relative;
+}

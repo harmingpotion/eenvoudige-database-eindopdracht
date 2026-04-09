@@ -5,7 +5,10 @@
 
     $hashed_pass = hash("sha256", $_POST["password"]);
     $sql = "SELECT * FROM `users` WHERE (email = '" . $_POST["identifier"] . "' OR username = '" . $_POST["identifier"] . "') AND password = '" . $hashed_pass . "'";
-    $user_row = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE (email = ? OR username = ?) AND password = ?");
+    $stmt->bind_param("sss", $_POST["identifier"], $_POST["identifier"], $hashed_pass);
+    $stmt->execute();
+    $user_row = $stmt->get_result();
     if ($user_row->num_rows==1) {
         include("session.php");
         $user = $user_row->fetch_assoc();

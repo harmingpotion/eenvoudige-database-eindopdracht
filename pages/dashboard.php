@@ -13,13 +13,16 @@
         <title>
             Dashboard
         </title>
-        <link rel="stylesheet" href="../static//stylesheets/main.css">
+        <link rel="stylesheet" href="../static/stylesheets/main.css">
+        <link rel="stylesheet" href="../static/stylesheets/dashboard.css">
     </head>
     <body>
         <h1>Dashboard</h1>
+        <hr>
         
-        <a href="./account.php">Account</a>
-
-        <a href="../utils/logout.php">Log out</a>
+        <section id="pages">
+            <a href="./account.php">Account</a>
+            <a href="../utils/logout.php">Log out</a>
+        </section>
     </body>
 </html>
