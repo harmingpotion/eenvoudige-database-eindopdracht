@@ -5,15 +5,13 @@
 
     $hashed_pass = hash("sha256", $_POST["password"]);
     $sql = "SELECT * FROM `users` WHERE (email = '" . $_POST["identifier"] . "' OR username = '" . $_POST["identifier"] . "') AND password = '" . $hashed_pass . "'";
-    $user = $conn->query($sql);
-    if ($user->num_rows==1) {
+    $user_row = $conn->query($sql);
+    if ($user_row->num_rows==1) {
         include("session.php");
+        $user = $user_row->fetch_assoc();
 
-        $username = $user->fetch_assoc()["username"];
-        $email = $user->fetch_assoc()["email"];
-
-        createNewSessionId($email);
-        setcookie("username", $username, time() + (3600 * 24), "/");
+        createNewSessionId($user["email"]);
+        setcookie("username", $user["username"], time() + (3600 * 24), "/");
 
         header("Location: ../pages/dashboard.php");
     } else {

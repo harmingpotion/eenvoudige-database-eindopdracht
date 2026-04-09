@@ -3,6 +3,8 @@
     if ((!isset($_COOKIE["email"]) && !isset($_COOKIE["username"])) || !isset($_COOKIE["session_id"])) {
         header("Location: auth.php");
     }
+    include("../utils/session.php");
+    loadSession();
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +13,13 @@
         <title>
             Dashboard
         </title>
+        <link rel="stylesheet" href="../static//stylesheets/main.css">
     </head>
     <body>
         <h1>Dashboard</h1>
+        
+        <a href="./account.php">Account</a>
+
         <a href="../utils/logout.php">Log out</a>
     </body>
 </html>

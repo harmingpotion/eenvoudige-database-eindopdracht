@@ -20,33 +20,34 @@
                 else echo "Log In";
             ?>
         </title>
+        <link rel="stylesheet" href="../static//stylesheets/main.css">
+        <link rel="stylesheet" href="../static/stylesheets/auth.css">
     </head>
     <body>
         <form action="../utils/<?php echo $_GET['type']==="login" ? "login.php" : "signup.php" ?>" method="post">
-            <p>
+            <h1>
                 <?php
                     if ($_GET["type"] === "signup") echo "Sign up";
                     else echo "Log in";
                 ?>
-            </p>
-            <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
+            </h1>
             <?php
                 if ($_GET['type']==="login") {
                     echo '<input type="text" required placeholder="Email or username" name="identifier">';
                 } else {
-                    echo '<input type="email" required placeholder="Input an email..." name="email">';
-                    if (isset($_SESSION["email_error"])) echo $_SESSION["email_error"];
-                    if (isset($_SESSION["email_error"])) $_SESSION["email_error"] = '';
-                    echo '<input type="text" required placeholder="Choose a username..." name="username">';
-                    if (isset($_SESSION["user_error"])) echo $_SESSION["user_error"];
-                    if (isset($_SESSION["user_error"])) $_SESSION["user_error"] = '';
+                    echo '<input type="email" required placeholder="Input an email..." name="email" value="' . (isset($_SESSION["temp_email"]) ? $_SESSION["temp_email"] : '') . '">';
+                    if (isset($_SESSION["email_error"])) echo "<p class='error'>" . $_SESSION["email_error"] . "</p>";
+                    echo '<input type="text" required placeholder="Choose a username..." name="username" value="' . (isset($_SESSION["temp_username"]) ? $_SESSION["temp_username"] : '') . '">';
+                    if (isset($_SESSION["user_error"])) echo "<p class='error'>" . $_SESSION["user_error"] . "</p>";
                 }
             ?>
             <input type="password" required placeholder="Password" name="password">
-            <p><?php
-                if (isset($_SESSION["login_error"])) echo $_SESSION["login_error"];
-                $_SESSION["login_error"] = '';
-            ?></p>
+            <?php
+                if (isset($_SESSION["password_error"])) echo "<p class='error'>" . $_SESSION["password_error"] . "</p>"; 
+            ?>
+            <?php
+                if (isset($_SESSION["login_error"])) echo "<p class='error'>" . $_SESSION["login_error"] . "</p>"; 
+            ?>
             <button type="submit">
                 <?php echo $_GET['type']==="login" ? "Log in" : "Sign up"?>
             </button>
@@ -58,3 +59,12 @@
         </form>
     </body>
 </html>
+
+<?php
+    if (isset($_SESSION["temp_email"])) $_SESSION["temp_email"] = '';
+    if (isset($_SESSION["temp_username"])) $_SESSION["temp_username"] = '';
+    if (isset($_SESSION["email_error"])) $_SESSION["email_error"] = '';
+    if (isset($_SESSION["user_error"])) $_SESSION["user_error"] = '';
+    if (isset($_SESSION["password_error"])) $_SESSION["password_error"] = '';
+    if (isset($_SESSION["login_error"])) $_SESSION["login_error"] = '';
+?>

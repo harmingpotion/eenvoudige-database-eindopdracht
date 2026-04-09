@@ -13,7 +13,11 @@
     if (!isset($_POST["username"])) $user_error = "Please input a username.";
     else if ($conn->query($sql_user)->num_rows!=0) $user_error = "This username has already been taken.";
 
-    if (!isset($email_error) && !isset($user_error)) {
+    $password_error = null;
+    if (!isset($_POST["password"])) $password_error = "Please input a password of atleast 8 characters.";
+    else if (strlen($_POST["password"])<8) $password_error = "Password must be atleast 8 characters.";
+
+    if (!isset($email_error) && !isset($user_error) && !isset($password_error)) {
         include("session.php");
         $session_id = createNewSessionId($_POST["email"]);
         $hashed_pass = hash("sha256", $_POST["password"]);
@@ -25,6 +29,9 @@
     } else {
         $_SESSION["email_error"] = $email_error;
         $_SESSION["user_error"] = $user_error;
+        $_SESSION["password_error"] = $password_error;
+        $_SESSION["temp_email"] = $_POST["email"];
+        $_SESSION["temp_username"] = $_POST["username"];
         header("Location: ../pages/auth.php?type=signup");
     }
 ?>
