@@ -21,30 +21,34 @@
         <hr>
         <a href="./dashboard.php" class="return">&lt; Return to dashboard</a>
 
-        <form action="../utils/update.php" method="post">
-            <input type="hidden" name="value" value="email">
-            <input type="email" name="email" placeholder="New email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Change</button>
-        </form>
+        <section id="account-panel">
+            <form action="../utils/update.php" method="post">
+                <input type="hidden" name="value" value="email">
+                <input type="email" name="email" placeholder="New email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Change</button>
+            </form>
 
-        <form action="../utils/update.php" method="post">
-            <input type="hidden" name="value" value="username">
-            <input type="text" name="username" placeholder="New username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Change</button>
-        </form>
+            <form action="../utils/update.php" method="post">
+                <input type="hidden" name="value" value="username">
+                <input type="text" name="username" placeholder="New username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Change</button>
+            </form>
 
-        <form action="../utils/update.php" method="post">
-            <input type="hidden" name="value" value="password">
-            <input type="password" name="new_password" placeholder="New password" required>
-            <input type="password" name="old_password" placeholder="Old password" required>
-            <button type="submit">Change</button>
-        </form>
+            <form action="../utils/update.php" method="post">
+                <input type="hidden" name="value" value="password">
+                <input type="password" name="new_password" placeholder="New password" required>
+                <input type="password" name="old_password" placeholder="Old password" required>
+                <button type="submit">Change</button>
+            </form>
 
-        <?php
-            if (isset($_SESSION["modified"])) echo $_SESSION["modified"];
-            if (isset($_SESSION["modify_message"])) echo $_SESSION["modify_message"];
-        ?>
+            <div class="status-message">
+                <?php
+                    if (isset($_SESSION["modify_message"])) echo $_SESSION["modify_message"];
+                    if (isset($_SESSION["modify_message"])) $_SESSION["modify_message"] = '';
+                ?>
+            </div>
+        </section>
     </body>
 </html>

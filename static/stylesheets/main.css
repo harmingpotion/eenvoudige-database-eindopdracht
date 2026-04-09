@@ -4,17 +4,27 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+:root {
+    --bg-deep: rgb(15, 20, 50);
+    --bg-mid: rgb(36, 49, 96);
+    --accent-soft: rgb(142, 189, 255);
+    --text-main: rgb(243, 248, 255);
+    --text-link: rgb(194, 224, 255);
+    --text-link-hover: rgb(255, 255, 255);
+}
+
 html, body {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgb(54, 54, 77), rgb(14, 14, 51));
+    min-height: 100%;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.11), transparent 38%),
+        radial-gradient(circle at 82% 76%, rgba(132, 184, 255, 0.18), transparent 42%),
+        linear-gradient(140deg, var(--bg-mid), var(--bg-deep));
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 h1 {
-    color: white;
+    color: var(--text-main);
     font-size: 4rem;
     width: 100%;
     text-align: center;
@@ -23,13 +33,13 @@ h1 {
 
 hr {
     position: relative;
-    color: white;
+    color: var(--accent-soft);
     width: 40%;
     left: 50%;
     transform: translateX(-50%);
     height: 3px;
     border: none;
-    background-color: white;
+    background-color: var(--accent-soft);
     border-radius: min(1vw, 1vh);
 }
 
@@ -38,7 +48,11 @@ hr {
     top: 5px;
     left: 3px;
     text-decoration: none;
-    color: white;
+    color: var(--text-link);
+}
+
+.return:hover {
+    color: var(--text-link-hover);
 }
 
 button {

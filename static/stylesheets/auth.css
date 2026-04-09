@@ -1,78 +1,93 @@
+body {
+    display: grid;
+    place-items: center;
+    padding: 18px;
+}
+
 form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.4);
-    width: 35vw;
-    border-radius: min(1.75vw, 1.75vh);
-    box-shadow: 20px 20px 2px 1px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(4px);
+    position: relative;
+    top: 15%;
+    width: min(470px, 92vw);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(170, 200, 255, 0.25);
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+    backdrop-filter: blur(6px);
+    box-shadow: 0 18px 38px rgba(6, 10, 35, 0.35);
 }
 
-@media (max-aspect-ratio: 9/16) {
-    form {
-        width: 85vw;
-    }
-}
-
-/* Title of the form */
 form h1 {
-    color: rgb(255, 255, 255);
-    margin: min(1vw, 1vh, 10px);
+    color: rgb(243, 248, 255);
     width: 100%;
     text-align: center;
+    margin: 2px 0 14px 0;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
 }
 
-/* Inputs of the form and the submit button */
-form input, form button {
-    width: 95%;
-    height: 4vw;
-    margin: 5px 0;
-    padding: 0 15px;
+form input,
+form button {
+    width: 90%;
+    min-height: 46px;
+    margin: 6px 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1.02rem;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    border: none;
-    border-radius: min(1vw, 1vh);
-    font-size: 1.75em;
 }
 
-
-@media (max-aspect-ratio: 9/16) {
-    form input, form button {
-        height: 10vw;
-    }
+form button {
+    width: calc(90% + 24px);
 }
 
-/* Inputs of the form */
 form input {
-    width: calc(95% - 30px);
-    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(170, 200, 255, 0.42);
+    background: rgba(14, 24, 60, 0.55);
+    color: rgb(240, 247, 255);
+    outline: none;
+}
+
+form input::placeholder {
+    color: rgba(222, 236, 255, 0.7);
+}
+
+form input:focus {
+    border-color: rgba(188, 218, 255, 0.95);
+    box-shadow: 0 0 0 2px rgba(162, 196, 255, 0.3);
 }
 
 form p.error {
-    color: rgb(228, 25, 25);
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-    padding: 3px 16px;
+    color: rgb(255, 157, 157);
+    padding: 2px 2px 4px 2px;
     font-weight: 600;
+    font-size: 0.95rem;
 }
 
-/* Submit button */
 form button {
-    cursor: pointer;
-    background-color: rgb(72, 135, 207);
-    box-shadow: 5px 5px 2px 1px rgba(3, 39, 80, 0.25);
-    font-weight: 900;
-    color: white;
+    border: 1px solid rgba(163, 197, 255, 0.45);
+    background: linear-gradient(145deg, rgba(84, 118, 196, 0.82), rgba(45, 73, 150, 0.82));
+    color: rgb(237, 245, 255);
+    font-weight: 700;
+    letter-spacing: 0.2px;
 }
 
 form a {
     text-decoration: none;
-    color: lightblue;
+    color: rgb(194, 224, 255);
     font-weight: 600;
-    margin: 5px;
-    width: calc(100% - 10px);
+    margin-top: 8px;
+    width: 100%;
     text-align: center;
     display: block;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 12px;
+    }
+
+    form {
+        padding: 16px;
+    }
 }
