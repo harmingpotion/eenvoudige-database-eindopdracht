@@ -12,6 +12,9 @@ const pv = document.getElementById("province");
 const old_pv = document.getElementById("province_old");
 const old_pv_2 = document.getElementById("province_old_2");
 
+const searchInput = document.getElementById("search_input");
+const searchType = document.getElementById("search_type");
+
 function openEdit(row) {
     view.style.display = 'block';
 
@@ -45,3 +48,52 @@ function closeEdit() {
     old_pv.value = '';
     old_pv_2.value = '';
 }
+
+function filterTable() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const searchField = searchType.value;
+    const rows = document.querySelectorAll("table tr");
+
+    rows.forEach(row => {
+        // Skip header rows and form rows
+        if (row.querySelector("th") || row.querySelector("input[name='firstname']")) {
+            return;
+        }
+
+        const firstNameCell = row.querySelector(".firstname");
+        const lastNameCell = row.querySelector(".lastname");
+        const emailCell = row.querySelector(".email");
+        const provinceCell = row.querySelector(".province");
+
+        if (!firstNameCell || !lastNameCell || !emailCell || !provinceCell) {
+            return;
+        }
+
+        const firstName = firstNameCell.innerText.toLowerCase();
+        const lastName = lastNameCell.innerText.toLowerCase();
+        const email = emailCell.innerText.toLowerCase();
+        const province = provinceCell.innerText.toLowerCase();
+
+        let matches = false;
+
+        if (searchField === "all") {
+            matches = firstName.includes(searchTerm) || 
+                      lastName.includes(searchTerm) || 
+                      email.includes(searchTerm) || 
+                      province.includes(searchTerm);
+        } else if (searchField === "firstname") {
+            matches = firstName.includes(searchTerm);
+        } else if (searchField === "lastname") {
+            matches = lastName.includes(searchTerm);
+        } else if (searchField === "email") {
+            matches = email.includes(searchTerm);
+        } else if (searchField === "province") {
+            matches = province.includes(searchTerm);
+        }
+
+        row.style.display = matches ? "" : "none";
+    });
+}
+
+searchInput.addEventListener("input", filterTable);
+searchType.addEventListener("change", filterTable);
