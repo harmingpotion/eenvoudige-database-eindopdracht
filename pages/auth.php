@@ -1,4 +1,4 @@
-<?php
+    <?php
     session_start();
     if ((isset($_COOKIE["email"]) || isset($_COOKIE["username"])) && isset($_COOKIE["session_id"])) {
         header("Location: dashboard.php");

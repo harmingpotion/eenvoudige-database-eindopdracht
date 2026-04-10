@@ -23,6 +23,18 @@ th {
     font-weight: 700;
 }
 
+th a {
+    color: rgb(238, 246, 255);
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+}
+
+th a:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+}
+
 td {
     background: rgba(17, 30, 70, 0.5);
 }

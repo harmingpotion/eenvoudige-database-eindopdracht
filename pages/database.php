@@ -9,7 +9,17 @@
     $conn = new mysqli("localhost","root","","eenvoudige_database");
     if ($conn->connect_error) die($conn->connect_error);
 
-    $sql = "SELECT firstname, lastname, email, province FROM `userdata` WHERE email_owner = '" . $_COOKIE["email"] . "'";
+    // Handle sorting
+    $sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'firstname';
+    $sort_direction = isset($_GET['direction']) ? $_GET['direction'] : 'ASC';
+    
+    // Validate sort column to prevent SQL injection
+    $allowed_columns = array('firstname', 'lastname', 'email', 'province');
+    if (!in_array($sort_column, $allowed_columns)) {
+        $sort_column = 'firstname';
+    }
+
+    $sql = "SELECT firstname, lastname, email, province FROM `userdata` WHERE email_owner = '" . $_COOKIE["email"] . "' ORDER BY " . $sort_column . " " . $sort_direction;
     $result = $conn->query($sql);
 ?>
 
@@ -54,10 +64,10 @@
         
         <table>
             <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Province</th>
+                <th><a href="?sort=firstname&direction=<?php echo ($sort_column === 'firstname' && $sort_direction === 'ASC') ? 'DESC' : 'ASC'; ?>">First name <?php echo ($sort_column === 'firstname') ? ($sort_direction === 'ASC' ? '▲' : '▼') : ''; ?></a></th>
+                <th><a href="?sort=lastname&direction=<?php echo ($sort_column === 'lastname' && $sort_direction === 'ASC') ? 'DESC' : 'ASC'; ?>">Last name <?php echo ($sort_column === 'lastname') ? ($sort_direction === 'ASC' ? '▲' : '▼') : ''; ?></a></th>
+                <th><a href="?sort=email&direction=<?php echo ($sort_column === 'email' && $sort_direction === 'ASC') ? 'DESC' : 'ASC'; ?>">Email <?php echo ($sort_column === 'email') ? ($sort_direction === 'ASC' ? '▲' : '▼') : ''; ?></a></th>
+                <th><a href="?sort=province&direction=<?php echo ($sort_column === 'province' && $sort_direction === 'ASC') ? 'DESC' : 'ASC'; ?>">Province <?php echo ($sort_column === 'province') ? ($sort_direction === 'ASC' ? '▲' : '▼') : ''; ?></a></th>
                 <th>Options</th>
             </tr>
 
